@@ -1,22 +1,23 @@
 <script setup>
-  import { reactive, ref } from 'vue';
+  import { ref } from 'vue';
 
-  const counter = reactive({
-    count: 0,
-  });
+  let colorClass = 'fuga';
+  const titleClass = ref(colorClass);
+  const dynamicId = ref('hoge');
 
-  console.log(counter.count);
-  counter.count++;
-
-  const message = ref('Hello World!');
-
-  console.log(message.value);
-  message.value = 'Changed';
+  setTimeout(() => {
+    console.log('3秒経過しました');
+    colorClass = 'hoge';
+  }, 3000);
 </script>
 
 <template>
-  <h1>Make me dynamic!</h1>
-  <h1>{{ message }}</h1>
-  <h1>{{ message.split('').reverse().join('') }}</h1>
-  <p>Count is: {{ counter.count }}</p>
+  <h1 :class="titleClass">Make me red</h1>
+  <div :id="dynamicId">hogehoge</div>
 </template>
+
+<style>
+  .fuga {
+    color: blue;
+  }
+</style>
